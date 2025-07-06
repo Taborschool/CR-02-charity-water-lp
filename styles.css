@@ -43,53 +43,231 @@ section {
 
 /* Hero Section Styles */
 .hero {
-  position: relative; /* Needed for overlay */
-  /* Set a background image that covers the whole section */
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
-  background-size: cover;      /* Make the image cover the whole area */
-  background-position: center; /* Center the image */
+  position: relative;
+  background-image: url('https://charitywater.dropmark.com/993072/34019618.png'); /* Background image for the hero section */
+  background-size: cover;
+  background-position: center; /* Center the background image */
   background-repeat: no-repeat;
-  color: #fff;                 /* White text for contrast */
-  text-align: center;          /* Center the text */
-  padding: 60px 20px;          /* Add space above and below */
-  border-radius: 0 0 16px 16px; /* Only round bottom corners */
-
-  /* Add a dark overlay for better text readability */
-  /* This uses a simple linear-gradient overlay */
+  color: #fff;
+  text-align: left; /* Align text to the left */ 
+  padding: 100px 20px;
+  border-radius: 0 0 16px 16px;
   background-blend-mode: darken;
-  background-color: rgba(46, 157, 247, 0.45); /* Blue overlay */
 }
 
-/* Make the headline bold and modern */
+/* Make the headline even bigger */
 .hero h1 {
-  font-size: 2.5em;
+  font-size: 3em; /* Increased font size */
   font-weight: bold;
   letter-spacing: 1px;
-  margin-bottom: 15px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for readability */
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  text-align: left; /* Align headline to the left */
 }
 
-/* Style the subheadline */
+/* Make the subheadline a bit bigger too */
 .hero p {
-  font-size: 1.2em;
+  font-size: 1.5em; /* Increased font size */
   margin-top: 0;
   text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  text-align: left; /* Align subheadline to the left */
+}
+
+/* Layout for hero section: text left, donation box right */
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  max-width: 900px;
+  margin: 0 auto;
+  gap: 32px;
+}
+
+/* Left side: headline and subheadline */
+.hero-text {
+  flex: 1;
+  text-align: left;
+  /* Move hero text closer to the left edge by reducing left padding */
+  padding: 100px 20px 100px 2px; /* Top, Right, Bottom, Left */
+}
+
+/* Right side: donation box */
+.stream-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(46, 157, 247, 0.15);
+  padding: 6px 12px;      /* Smaller padding for less height */
+  max-width: 280px;
+  min-width: 200px;
+  max-height: fit-content;
+  margin: 0;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  opacity: 0.97;
+  border: 3px solid #FFC907; /* Add a yellow border */
+  /* Remove any extra margin or large padding inside the box */
+  /* You can also reduce font-size or remove extra elements inside the box for even less height */
+}
+
+/* Stream box title at the top, centered, not a button */
+.stream-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #000000; 
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* Make the amount labels bold and clear for students */
+.amount-label {
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+/* Style for the donation amount buttons in the stream box */
+.stream-box .amount-btn {
+  display: inline-block;
+  background: #fff; /* White background */
+  color: #222;      /* Black text */
+  border: 2px solid #FFC907; /* Yellow border */
+  border-radius: 6px;
+  padding: 10px 22px;
+  margin: 8px 4px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Highlight yellow on hover */
+.stream-box .amount-btn:hover,
+.stream-box .amount-btn.selected {
+  background: #FFC907;
+  color: #222; /* Keep text black on highlight */
+}
+
+/* Hide the radio buttons themselves */
+.stream-box input[type="radio"] {
+  display: none;
+}
+
+/* Hide radio buttons used for the slider */
+input[type="radio"][name="slider"] {
+  display: none;
+}
+
+/* Hide all radio buttons for the slider */
+input[type="radio"][name="photogroup"] {
+  display: none;
+}
+
+/* Hide all photo groups by default */
+.photo-group {
+  display: none;
+}
+
+/* Show the correct group when its radio is checked */
+#group1:checked ~ .photo-slider-groups .photo-group:nth-child(1) { display: flex; }
+#group2:checked ~ .photo-slider-groups .photo-group:nth-child(2) { display: flex; }
+#group3:checked ~ .photo-slider-groups .photo-group:nth-child(3) { display: flex; }
+
+/* Style the group of photos in a row */
+.photo-group {
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+/* Each photo square */
+.photo-square {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Make the image fit the square */
+.photo-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Navigation dots for the slider */
+.photo-slider-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.photo-slider-nav label {
+  width: 16px;
+  height: 16px;
+  background: #FFC907;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+/* Highlight the active dot */
+#group1:checked ~ .photo-slider-nav label[for="group1"],
+#group2:checked ~ .photo-slider-nav label[for="group2"],
+#group3:checked ~ .photo-slider-nav label[for="group3"] {
+  opacity: 1;
+  border: 2px solid #2E9DF7;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 700px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+  .hero-text {
+    text-align: center;
+  }
+  .stream-box {
+    margin: 0 auto;
+  }
+  .photo-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .photo-square {
+    width: 160px;
+    height: 160px;
+  }
 }
 
 /* Story Section Styles */
+/* --- Section 2 (Story) Reset --- */
+/* All photo squares, slider, and navigation styles are removed for a clean slate. */
+
+/* If you want to style the story section itself, you can keep it simple: */
 .story {
-  background-color: #8BD1CB; /* Secondary Light Blue */
+  background-color: #8BD1CB; /* Light blue background for the story section */
   color: #222;
   text-align: center;
   padding: 30px 20px;
+  border-radius: 12px;
+  margin: 24px 10px;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.07);
 }
 
-/* Add accent color to section headings */
-h2 {
-  color: #2E9DF7; /* Primary blue */
-  margin-top: 0;
-  font-weight: bold;
-}
+/* You can add more styles for text or new content as needed. */
 
 /* Call-to-Action Section Styles */
 .call-to-action {
@@ -136,6 +314,312 @@ section {
   margin-bottom: 20px;
 }
 
+/* Simple Navigation Bar Styles */
+.navbar {
+  background-color: #fafafa; /* Primary blue */
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 20px;
+}
+
+/* Logo or site name */
+.logo {
+  font-weight: bold;
+  font-size: 1.3em;
+  letter-spacing: 1px;
+}
+
+/* Logo image inside the logo class */
+.logo img {
+  height: 40px;      /* Set the logo image height */
+  vertical-align: left; /* Aligns the image nicely with text/links */
+}
+
+/* Navbar links */
+.navbar a {
+  color: #000000;
+  align-items: center;
+  text-decoration: none;
+  margin-left: 18px;
+  font-size: 24px;
+  transition: text-decoration 0.2s;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #f4f8fb;
+  color: #888;
+  text-align: center;
+  padding: 18px 10px;
+  font-size: 0.95em;
+  margin-top: 30px;
+  border-top: 1px solid #e0e7ef;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Row for story photos */
+.story-photos {
+  display: flex; /* Place photo squares in a row */
+  justify-content: center; /* Center the row */
+  gap: 24px; /* Space between each square */
+  margin-top: 24px;
+  overflow-x: visible; /* No scroll */
+  padding-bottom: 5px;
+}
+
+/* Each photo square */
+.photo-square {
+  background: #fff; /* White background for border effect */
+  border-radius: 10px;
+  border-color: #ffc907;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+/* Make the image fit the square */
+.photo-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* On small screens, stack squares vertically */
+@media (max-width: 700px) {
+  .story-photos {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    gap: 16px;
+  }
+  .photo-square {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* Story slider: photos in a horizontal row by default */
+.story-slider {
+  display: flex;                /* Place slides in a row */
+  flex-direction: row;          /* Horizontal layout */
+  justify-content: center;      /* Center the row */
+  gap: 32px;                    /* Space between each photo */
+  margin-top: 24px;
+  margin-bottom: 32px;
+  align-items: center;
+  position: relative;
+  min-height: 220px;
+}
+
+/* Each slide/photo */
+.story-slider .slide {
+  background: #fff;             /* White border effect */
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+}
+
+/* Show only the selected slide based on the checked radio button */
+.story-slider .slide {
+  display: none; /* Hide all slides by default */
+}
+
+/* Show the first slide when slide1 is checked */
+#slide1:checked ~ .slides .slide:nth-child(1) {
+  display: flex;
+}
+
+/* Show the second slide when slide2 is checked */
+#slide2:checked ~ .slides .slide:nth-child(2) {
+  display: flex;
+}
+
+/* Show the third slide when slide3 is checked */
+#slide3:checked ~ .slides .slide:nth-child(3) {
+  display: flex;
+}
+
+/* Make the image fit the square and have rounded corners */
+.story-slider .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Slider navigation dots overlay: position over the slides */
+.story-slider .slider-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -12px; /* Push the yellow dots down a bit */
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.story-slider .slider-nav label {
+  width: 16px;
+  height: 16px;
+  background: #FFC907;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+/* Highlight the active dot */
+#slide1:checked ~ .slider-nav label[for="slide1"],
+#slide2:checked ~ .slider-nav label[for="slide2"],
+#slide3:checked ~ .slider-nav label[for="slide3"] {
+  opacity: 1;
+  border: 2px solid #2E9DF7;
+}
+
+/* Responsive: stack photos vertically only on small screens */
+@media (max-width: 700px) {
+  .story-slider {
+    flex-direction: column;     /* Stack vertically on small screens */
+    align-items: center;
+    gap: 18px;
+    min-height: 0;
+  }
+  .story-slider .slide {
+    width: 120px;
+    height: 120px;
+  }
+  .story-slider .slider-nav {
+    position: static;           /* Move dots below on small screens */
+    margin-top: 12px;
+  }
+}
+
+/* Slides container: row on computers, column on phones */
+.slides {
+  display: flex;              /* Use flexbox for layout */
+  flex-direction: row;        /* Row (side by side) on computers */
+  gap: 24px;                  /* Space between slides */
+  justify-content: center;    /* Center the row */
+}
+
+/* Each slide/photo: keep as a square */
+.slide {
+  background: #fff;           /* White background for border effect */
+  border-radius: 12px;
+  border-color: #fff;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+}
+
+/* Make the image fit the square and have rounded corners */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Responsive: stack slides vertically on small screens */
+@media (max-width: 700px) {
+  .slides {
+    flex-direction: column;   /* Stack vertically on phones */
+    align-items: center;
+    gap: 16px;
+  }
+  .slide {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* Layout for the slider row with side squares */
+.slider-row {
+  display: flex;                /* Put all squares in a row */
+  justify-content: center;      /* Center the row */
+  align-items: center;          /* Align items vertically */
+  gap: 24px;                    /* Space between squares */
+  margin-top: 24px;
+  position: relative;
+}
+
+/* Hide all side images by default */
+.left-img, .right-img {
+  display: none;
+}
+
+/* Show the correct left preview image */
+#slide1:checked ~ .side-squares .left-img:nth-child(2) { display: block; }
+#slide2:checked ~ .side-squares .left-img:nth-child(3) { display: block; }
+#slide3:checked ~ .side-squares .left-img:nth-child(1) { display: block; }
+
+/* Show the correct right preview image */
+#slide1:checked ~ .side-squares ~ .story-slider ~ .side-squares .right-img:nth-child(1) { display: block; }
+#slide2:checked ~ .side-squares ~ .story-slider ~ .side-squares .right-img:nth-child(2) { display: block; }
+#slide3:checked ~ .side-squares ~ .story-slider ~ .side-squares .right-img:nth-child(3) { display: block; }
+
+/* Style for side squares */
+.side-square {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Make preview images fit the square */
+.side-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 700px) {
+  .slider-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .side-square {
+    width: 70px;
+    height: 70px;
+  }
+}
+
 /* 
   Media Queries for Responsive Design
   Media queries help make your website look good on different screen sizes,
@@ -146,33 +630,28 @@ section {
 @media (max-width: 600px) {
   /* Make hero section padding smaller on small screens */
   .hero {
-    padding: 32px 8px;
+    padding: 32px 8px; /* Less padding for small screens */
     font-size: 1em;
   }
-
   /* Make headline font size smaller so it fits on small screens */
   .hero h1 {
     font-size: 1.4em;
   }
-
   /* Make subheadline font size smaller */
   .hero p {
     font-size: 1em;
   }
-
   /* Make story and call-to-action sections have less padding */
   .story,
   .call-to-action,
-  .donation-section {
+  .stream-box {
     padding: 14px 8px;
   }
-
   /* Make impact story image smaller and stack above the text */
   .impact-content {
     display: block; /* Stack items vertically */
     text-align: center;
   }
-
   .impact-image {
     width: 90%;    /* Make image take up most of the width */
     max-width: 220px;
@@ -191,8 +670,8 @@ section {
     max-width: 800px;
     margin: 0 auto;
   }
-
   .impact-image {
     width: 300px;
   }
 }
+
